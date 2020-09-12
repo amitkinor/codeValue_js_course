@@ -1,45 +1,62 @@
 import { Product, Customer, Order } from "./Store_entities.js";
 
 export default class Store {
-  constructor() {
-    this.products = this.#initProducts();
+	constructor() {
+		this.products = this.#initProducts();
 		this.customers = this.#initCustomers();
 		this.orders = this.#initOrders();
 	}
 
-  setOrder = (customerId, productsIds) => {
-    
-    this.orders.push(new Order(customerId, productsIds));
+	//  Setters  //
 
-    productsIds.forEach((productId) => {
-      this.products.map((product) => {
-        (product.id === productId) && (product.itemsInstock--) 
-      })
-    })
+  setState = (state) => {
+    const parsedState = JSON.parse(state);
+    this.products = parsedState.products;
+    this.customers = parsedState.customers;
+    this.orders = parsedState.orders;
   }
 
-  getProducts = () => this.products;
-  getCustomers = () => this.customers;
-  getOrders = () => this.orders;
-  
+	setOrder = (customerId, productsIds) => {
+		this.orders.push(new Order(customerId, productsIds));
 
-  #initProducts = () => [
-    new Product(1, 'prod1', 1),
-    new Product(2, 'prod2', 0),
-    new Product(3, 'prod3', 2),
-    new Product(4, 'prod3', 3),
-  ];
+		productsIds.forEach((productId) => {
+			this.products.map((product) => {
+				product.id === productId && product.itemsInstock--;
+			});
+		});
+	};
 
-  #initCustomers = () => [
-    new Customer(11, 'customer11', 'hasas st. 11'),
-    new Customer(22, 'customer22', 'hasas st. 22'),
-    new Customer(33, 'customer33', 'hasas st. 33'),
-  ];
+	//  Getters //
 
-  #initOrders = () => [
-    new Order(11, [1]),
-    new Order(22, [1,2]),
-    new Order(33, [1,2,3]),
-  ];
+	getJsonData = () =>
+		JSON.stringify({
+			products: this.products,
+			customers: this.customers,
+			orders: this.orders,
+		});
 
+	getProducts = () => this.products;
+	getCustomers = () => this.customers;
+	getOrders = () => this.orders;
+
+	//  dummy data  //
+
+	#initProducts = () => [
+		new Product(1, "prod1", 1),
+		new Product(2, "prod2", 0),
+		new Product(3, "prod3", 2),
+		new Product(4, "prod3", 3),
+	];
+
+	#initCustomers = () => [
+		new Customer(11, "customer11", "hasas st. 11"),
+		new Customer(22, "customer22", "hasas st. 22"),
+		new Customer(33, "customer33", "hasas st. 33"),
+	];
+
+	#initOrders = () => [
+		new Order(11, [1]),
+		new Order(22, [1, 2]),
+		new Order(33, [1, 2, 3]),
+	];
 }

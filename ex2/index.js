@@ -2,6 +2,14 @@ import Store from "./Store.js";
 
 const store = new Store();
 
+const load = (state) => {
+  store.setState(state);
+}
+
+const save = () => {
+  clg(store.getJsonData());
+}
+
 const printOrders = () => {
 	const orders = store.getOrders();
 	orders.forEach((order) => {
@@ -34,6 +42,14 @@ const checkEmptyHelper = (productIds) => {
 
 //    testing   //
 
+let value = JSON.stringify({
+  products: [{id:1, name:'prod1',itemsInstock:3},{id:2,name:'prod2',itemsInstock:2}],
+  customers: [{id:11, name:'amit',address:'hadsad'},{id:22, name:'amit2',address:'rrrr'}],
+  orders: [{customerId:1,productsIds:[2,3,4]},{customerId:2,productsIds:[4]}]
+})
+
+load(value);
+console.log(store);
 //  printOrders();
 
 //  Add order execution
@@ -41,3 +57,4 @@ const checkEmptyHelper = (productIds) => {
 //    console.log(orderResult);
 
 //console.log(store)
+//console.log(save());
