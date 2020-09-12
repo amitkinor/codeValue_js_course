@@ -7,18 +7,33 @@ export default class Store {
 		this.orders = this.#initOrders();
 	}
 
+	// checks if any of the products are out of stock
+	checkEmptyProducts = (productIds) => {
+		let isStockEmpty = false;
+		productIds.forEach((productId) => {
+			for (let product of this.products) {
+				if (product.id === productId) {
+					!product.itemsInstock && (isStockEmpty = true);
+				}
+			}
+		});
+		return isStockEmpty;
+	};
+
 	//  Setters  //
 
-  setState = (state) => {
-    const parsedState = JSON.parse(state);
-    this.products = parsedState.products;
-    this.customers = parsedState.customers;
-    this.orders = parsedState.orders;
-  }
+	setState = (state) => {
+		const parsedState = JSON.parse(state);
+		this.products = parsedState.products;
+		this.customers = parsedState.customers;
+		this.orders = parsedState.orders;
+	};
 
 	setOrder = (customerId, productsIds) => {
-		this.orders.push(new Order(customerId, productsIds));
+    // add order
+    this.orders.push(new Order(customerId, productsIds));
 
+    //  update stock
 		productsIds.forEach((productId) => {
 			this.products.map((product) => {
 				product.id === productId && product.itemsInstock--;
@@ -45,7 +60,8 @@ export default class Store {
 		new Product(1, "prod1", 1),
 		new Product(2, "prod2", 0),
 		new Product(3, "prod3", 2),
-		new Product(4, "prod3", 3),
+		new Product(4, "prod4", 0),
+		new Product(5, "prod5", 2),
 	];
 
 	#initCustomers = () => [
