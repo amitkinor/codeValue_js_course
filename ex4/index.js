@@ -54,7 +54,7 @@ function startEvolution(){
 
 		setTimeout(() => {
 			clearTimeout(intervalTimer);
-		}, (numberOfGenerations+1)*1000)
+		}, (numberOfGenerations)*1000)
 
 }
 
