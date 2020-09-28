@@ -167,7 +167,6 @@ class Grid {
 	// according to the current matrix state
 	calcNextGen() {
 		this.genNumber ++;
-		
 		for (let col = 0; col < this.matrix.length; col++) {
 			for (let row = 0; row < this.matrix[col].length; row++) {
 				let currentCell = this.matrix[col][row];
@@ -181,9 +180,6 @@ class Grid {
 				currentCell.dead = currentCell.nextDead;
 			}
 		}
-		
-		
-
 	}
 
 	// a cell lives or dies according to how many live neighbors it got

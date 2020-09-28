@@ -1,11 +1,12 @@
 let grid = null;
 let numberOfGenerations = 50;
+let currentGen = 0;
 
 window.onload = () => {
 	function init() {
     
     // 	initiate grid
-		grid = new Grid(30, 30);
+		grid = new Grid(25, 25);
 
 		//	filling grid with cells
 		grid.fillWithCells();
@@ -34,6 +35,13 @@ function updateScreen(){
 	gridElement.innerHTML = grid.getHtml();
 }
 
+function updateGenNum(){
+	currentGen++;
+	let genNum = document.querySelector(".myBtn");
+	genNum.innerHTML = `Generation  Number  -  ${currentGen}`;
+
+}
+
 //	1. setting next iteration for every cell (according to its neighbors)
 //  2. rendering the new gen
 function startEvolution(){
@@ -41,6 +49,7 @@ function startEvolution(){
 		const intervalTimer = setInterval(() => {
 			grid.calcNextGen();
 			updateScreen();	
+			updateGenNum();
 		}, 1000);
 
 		setTimeout(() => {

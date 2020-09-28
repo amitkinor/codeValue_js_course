@@ -1,0 +1,53 @@
+.body{
+  background-color: aquamarine;
+}
+
+.canvas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btns{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+
+.specs{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  font-size: medium;
+}
+
+.myBtn{
+  width: auto;
+  height: auto;
+  padding: 20px;
+  margin: 20px;
+  font-size: larger;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 3px 3px;
+  justify-content: space-evenly;
+  grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px
+                        40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+  background-color: white;
+  padding: 3px;
+}
+
+.grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+}
+
+.dead{
+  background-color: rgb(151, 150, 150);
+}
+.alive{
+  background-color: green;
+}
