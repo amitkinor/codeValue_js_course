@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./Cell.js"></script>
+  <script src="./Grid.js"></script>
+  <script src="./index.js"></script>
+  <style>
+
+    .body{
+      background-color: aquamarine;
+    }
+
+    .canvas{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .myBtn{
+      width: 100px;
+      height: 50px;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-gap: 3px 3px;
+      justify-content: space-evenly;
+      grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px
+                            40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+      background-color: white;
+      padding: 3px;
+    }
+
+    .grid-item {
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      padding: 10px;
+    }
+
+    .dead{
+      background-color: rgb(151, 150, 150);
+    }
+    .alive{
+      background-color: green;
+    }
+  </style>
+    
+</head>
+<body class="body">
+  <div class="canvas">
+    <div class="grid"></div>
+    <button class="myBtn" onclick="startEvolution()"> Start Evolution </button>
+  </div>
+</body>
+</html>
